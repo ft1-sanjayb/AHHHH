@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1 Month Anniversary Chamma Kutty ❤️</title>
+    <style>
+        :root {
+            --color-primary: #ff4d6d;
+            --color-secondary: #ff758f;
+            --color-accent: #ffc2d1;
+            --color-bg: #fff0f3;
+            --color-text: #2d1e2f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe5f0 100%);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        /* Opening Page */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 2rem;
+            position: relative;
+        }
+
+        #opening-page {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa8cc 50%, #ffc2d1 100%);
+            text-align: center;
+        }
+
+        .opening-content h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .opening-content p {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .start-btn {
+            padding: 1rem 3rem;
+            font-size: 1.25rem;
+            background: white;
+            color: var(--color-primary);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Balloon Page */
+        #balloon-page {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe8ed 100%);
+            display: none;
+        }
+
+        .balloon-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .balloon {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-align: center;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(1) { animation-delay: 0s; }
+        .balloon:nth-child(2) { animation-delay: 0.5s; }
+        .balloon:nth-child(3) { animation-delay: 1s; }
+        .balloon:nth-child(4) { animation-delay: 1.5s; }
+        .balloon:nth-child(5) { animation-delay: 2s; }
+        .balloon:nth-child(6) { animation-delay: 2.5s; }
+
+        .balloon:hover {
+            transform: scale(1.1);
+        }
+
+        .balloon-svg {
+            width: 120px;
+            height: 150px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+
+        .balloon.popped .balloon-svg {
+            opacity: 0.3;
+            filter: grayscale(100%);
+        }
+
+        /* Card Modal */
+        .card-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .card-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.5s ease-out;
+            position: relative;
+        }
+
+        .card-content h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-image {
+            width: 100%;
+            max-width: 300px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-quote {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--color-text);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .close-card-btn {
+            padding: 0.75rem 2rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .close-card-btn:hover {
+            background: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Final Page */
+        #final-page {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c850c0 50%, #9d4edd 100%);
+            display: none;
+            text-align: center;
+            color: white;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .final-content {
+            max-width: 800px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .final-content h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .final-paragraph {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 2rem;
+            background: rgba(255,255,255,0.9);
+            color: var(--color-text);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .progress-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .balloon-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .opening-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .final-content h1 {
+                font-size: 2rem;
+            }
+
+            .final-paragraph {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Opening Page -->
+    <div id="opening-page" class="page">
+        <div class="opening-content">
+            <h1>✨ Happy 1 Month Anniversary Chamma Kutty! ✨</h1>
+            <p>To the most amazing person in my life</p>
+            <button class="start-btn" onclick="startExperience()">Begin Our Journey 💕</button>
+        </div>
+    </div>
+
+    <!-- Balloon Page -->
+    <div id="balloon-page" class="page">
+        <div class="progress-text">Pop the balloons to reveal special messages! 🎈</div>
+        <div class="balloon-container">
+            <!-- Balloon 1 -->
+            <div class="balloon" onclick="popBalloon(0)">
+                <svg class="balloon-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="60" rx="35" ry="45" fill="#ff6b9d"/>
+                    <path d="M50 105 Q50 120, 50 130" stroke="#999" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="50" rx="8" ry="12" fill="#ff9dbf" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <!-- Balloon 2 -->
+            <div class="balloon" onclick="popBalloon(1)">
+                <svg class="balloon-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="60" rx="35" ry="45" fill="#ffa8cc"/>
+                    <path d="M50 105 Q50 120, 50 130" stroke="#999" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="50" rx="8" ry="12" fill="#ffc2d1" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <!-- Balloon 3 -->
+            <div class="balloon" onclick="popBalloon(2)">
+                <svg class="balloon-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="60" rx="35" ry="45" fill="#ff85a1"/>
+                    <path d="M50 105 Q50 120, 50 130" stroke="#999" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="50" rx="8" ry="12" fill="#ffb3c1" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <!-- Balloon 4 -->
+            <div class="balloon" onclick="popBalloon(3)">
+                <svg class="balloon-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="60" rx="35" ry="45" fill="#ffb3c1"/>
+                    <path d="M50 105 Q50 120, 50 130" stroke="#999" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="50" rx="8" ry="12" fill="#ffd4e5" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <!-- Balloon 5 -->
+            <div class="balloon" onclick="popBalloon(4)">
+                <svg class="balloon-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="60" rx="35" ry="45" fill="#ff99b3"/>
+                    <path d="M50 105 Q50 120, 50 130" stroke="#999" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="50" rx="8" ry="12" fill="#ffc2d1" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <!-- Balloon 6 -->
+            <div class="balloon" onclick="popBalloon(5)">
+                <svg class="balloon-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="60" rx="35" ry="45" fill="#ffc2d1"/>
+                    <path d="M50 105 Q50 120, 50 130" stroke="#999" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="50" rx="8" ry="12" fill="#ffe0eb" opacity="0.6"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Modal -->
+    <div id="card-modal" class="card-modal">
+        <div class="card-content">
+            <h2 id="card-title">Message</h2>
+            <img id="card-image" class="card-image" src="" alt="Memory">
+            <p id="card-quote" class="card-quote"></p>
+            <button class="close-card-btn" onclick="closeCard()">Close 💖</button>
+        </div>
+    </div>
+
+    <!-- Final Page -->
+    <div id="final-page" class="page">
+        <canvas id="confetti-canvas"></canvas>
+        <div class="final-content">
+            <h1>🎉 All Balloons Popped! 🎉</h1>
+            <div class="final-paragraph">
+                <p><strong>💖 Happy 1 Month Anniversary, my Putani💃! 🥂 💖,</strong></p>
+                <p>I'm still shocked that you accpeted me and gave me a chance to be your boyfriend. The journey from "Don't keep any hopes" to "i wanna give you a chance" has been so good and we've successfully completed a month together with few misunderstandings and a lot of wonderful memories together, starting from the bus rides to visiting art gallery together to going on coffee date it's been very wonderful. My life from when you've come has become much more brighter than it was earlier.</p>
+                <p>we're too young to promise forever, but I'll make sure we're never seperating for minunderstandings, instead we'll sit together sort everything ourselves. Share energies when one is low to compensate and help each other forever to grow and turn our dating into relationship and relationship into a happy family forever.</p>
+                <p>Here's to our first month together and to countless more adventures ahead. Thank you for being you, for choosing me, and for making my world infinitely more beautiful.</p>
+                <p><em>Forever yours,</em></p>
+                <p><em>JAYYY🫶🫰</em> ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Card data with quotes and images
+        const cardData = [
+            {
+                title: "Our First Moment ✨",
+                quote: "The moment I met you, I knew my life was about to change forever. You walked in and everything felt right.",
+                image: "8.jpeg"
+            },
+            {
+                title: "Your Beautiful Smile 😊",
+                quote: "Your smile is my favorite thing in the world. It lights up every room you enter and warms my heart every single time.",
+                image: "6.jpeg"
+            },
+            {
+                title: "Every Conversation 💬",
+                quote: "I could talk to you for hours and never get bored. Your voice, your thoughts, your laughter - they're my favorite melodies.",
+                image: "2.jpeg"
+            },
+            {
+                title: "Our Adventures Together 🌟",
+                quote: "Every moment with you is an adventure. Whether we're exploring new places or just spending quiet time together, it's always perfect.",
+                image: "4.jpeg"
+            },
+            {
+                title: "The Way You Care 💝",
+                quote: "Your kindness and the way you care for me means everything. You make me feel loved, valued, and incredibly special.",
+                image: "7.jpeg"
+            },
+            {
+                title: "Forever & Always 💞",
+                quote: "This is just the beginning of our beautiful story. I can't wait to create more memories with you, today and always.",
+                image: "9.jpeg"
+            }
+        ];
+
+        let poppedCount = 0;
+
+        function startExperience() {
+            document.getElementById('opening-page').style.display = 'none';
+            document.getElementById('balloon-page').style.display = 'flex';
+        }
+
+        function popBalloon(index) {
+            const balloon = document.querySelectorAll('.balloon')[index];
+            
+            if (balloon.classList.contains('popped')) {
+                return;
+            }
+
+            balloon.classList.add('popped');
+            poppedCount++;
+
+            // Show card
+            showCard(cardData[index]);
+
+            // Check if all balloons are popped
+            if (poppedCount === 6) {
+                setTimeout(() => {
+                    goToFinalPage();
+                }, 500);
+            }
+        }
+
+        function showCard(data) {
+            document.getElementById('card-title').textContent = data.title;
+            document.getElementById('card-quote').textContent = data.quote;
+            document.getElementById('card-image').src = data.image;
+            
+            const modal = document.getElementById('card-modal');
+            modal.style.display = 'flex';
+        }
+
+        function closeCard() {
+            document.getElementById('card-modal').style.display = 'none';
+        }
+
+        function goToFinalPage() {
+            document.getElementById('balloon-page').style.display = 'none';
+            document.getElementById('final-page').style.display = 'flex';
+            startHeartConfetti();
+        }
+
+        // Heart Confetti Animation
+        function startHeartConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const hearts = [];
+            const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '💞'];
+
+            class Heart {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = -20;
+                    this.speed = 1 + Math.random() * 2;
+                    this.size = 20 + Math.random() * 20;
+                    this.emoji = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                    this.swing = Math.random() * 2;
+                    this.swingSpeed = 0.02 + Math.random() * 0.03;
+                    this.angle = 0;
+                }
+
+                update() {
+                    this.y += this.speed;
+                    this.angle += this.swingSpeed;
+                    this.x += Math.sin(this.angle) * this.swing;
+                }
+
+                draw() {
+                    ctx.font = `${this.size}px Arial`;
+                    ctx.fillText(this.emoji, this.x, this.y);
+                }
+
+                isOffScreen() {
+                    return this.y > canvas.height;
+                }
+            }
+
+            function createHearts() {
+                if (hearts.length < 50) {
+                    for (let i = 0; i < 3; i++) {
+                        hearts.push(new Heart());
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                createHearts();
+
+                for (let i = hearts.length - 1; i >= 0; i--) {
+                    hearts[i].update();
+                    hearts[i].draw();
+
+                    if (hearts[i].isOffScreen()) {
+                        hearts.splice(i, 1);
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+    </script>
+</body>
+</html>
